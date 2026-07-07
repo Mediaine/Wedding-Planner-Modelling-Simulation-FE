@@ -37,4 +37,14 @@ export interface SimulationSummary {
 
   foodCost: number;
 
+  traditionType: string;
+
+  traditionPackage: number;
+
+  mahar: number;
+
+  seserahan: number;
+
+  traditionCost: number;
+
 }

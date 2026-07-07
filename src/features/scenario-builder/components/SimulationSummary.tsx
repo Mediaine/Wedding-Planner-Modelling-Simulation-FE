@@ -7,6 +7,7 @@ import LiveSummary from "./summary/LiveSummary";
 import WeddingInsightPanel from "./summary/WeddingInsightPanel";
 import FoodCostCard from "./summary/FoodCostCard";
 import AppCard from "@/components/common/AppCard";
+import TraditionCard from "./summary/TraditionCard";
 
 import { useBuilderStore } from "@/stores/builder.store";
 
@@ -52,6 +53,14 @@ export default function SimulationSummary() {
             attendance={summary.attendance}
             mealPrice={scenario.guest.mealPrice}
             foodCost={summary.foodCost}
+          />
+
+          <TraditionCard
+            traditionType={summary.traditionType}
+            packagePrice={summary.traditionPackage}
+            mahar={summary.mahar}
+            seserahan={summary.seserahan}
+            total={summary.traditionCost}
           />
 
           <BudgetOverview

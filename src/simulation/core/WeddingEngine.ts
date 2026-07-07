@@ -5,6 +5,7 @@ import { BudgetEngine } from "../budget/BudgetEngine";
 import { GuestEngine } from "../guest/GuestEngine";
 import { VenueEngine } from "../venue/VenueEngine";
 import { VendorEngine } from "../vendor/VendorEngine";
+import { TraditionEngine } from "../tradition/TraditionEngine";
 
 export class WeddingEngine {
 
@@ -60,8 +61,9 @@ export class WeddingEngine {
          */
 
         const traditionCost =
-            scenario.tradition.mahar +
-            scenario.tradition.seserahan;
+            TraditionEngine.calculate(
+                scenario.tradition,
+            );
 
         /**
          * ===============================

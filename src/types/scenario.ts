@@ -1,5 +1,6 @@
 import type { VenueConfiguration } from "./venue";
 import type { VendorConfiguration } from "./vendor";
+import type { TraditionConfiguration } from "./tradition";
 
 export type WeddingConcept =
   | "DIY"
@@ -32,11 +33,6 @@ export interface GuestConfiguration {
   mealPrice: number;
 }
 
-export interface TraditionConfiguration {
-  mahar: number;
-  seserahan: number;
-}
-
 export interface WeddingScenario {
   basic: ScenarioBasic;
   guest: GuestConfiguration;
@@ -44,3 +40,4 @@ export interface WeddingScenario {
   vendor: VendorConfiguration;
   tradition: TraditionConfiguration;
 }
+

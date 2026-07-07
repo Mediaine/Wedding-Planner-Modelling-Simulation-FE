@@ -85,6 +85,21 @@ export class SimulationSummaryService {
 
       insights,
 
+      traditionType:
+        scenario.tradition.traditionType,
+
+      traditionPackage:
+        scenario.tradition.packagePrice,
+
+      mahar:
+        scenario.tradition.mahar,
+
+      seserahan:
+        scenario.tradition.seserahan,
+
+      traditionCost:
+        calculation.traditionCost,
+
     };
 
   }

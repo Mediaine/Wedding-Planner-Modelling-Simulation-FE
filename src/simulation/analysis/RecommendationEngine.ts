@@ -63,6 +63,19 @@ export class RecommendationEngine {
 
     }
 
+    // Tradition
+    if (
+        calculation.traditionCost > calculation.budget * 0.25
+    ) {
+        result.push({
+            title:
+                "Tradition Cost",
+            message:
+                "Traditional ceremony consumes a significant portion of your wedding budget.",
+        });
+
+    }
+
     return result;
 
   }

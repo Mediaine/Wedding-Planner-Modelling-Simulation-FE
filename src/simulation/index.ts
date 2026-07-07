@@ -51,3 +51,10 @@ export { WeddingInsightEngine } from "./analysis/WeddingInsightEngine";
  */
 export { PlannerPresetEngine } from "./planner/PlannerPresetEngine";
 export { AutoPlannerEngine } from "./planner/AutoPlannerEngine";
+
+/**
+ * ======================================
+ * Tradition
+ * ======================================
+ */
+export { TraditionEngine } from "./tradition/TraditionEngine";

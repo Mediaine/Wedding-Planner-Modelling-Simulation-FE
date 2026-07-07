@@ -4,6 +4,7 @@ import GuestConfiguration from "./sections/GuestConfiguration";
 import VenueConfiguration from "./sections/VenueConfiguration";
 import SimulationSummary from "./SimulationSummary";
 import VendorConfiguration from "./sections/VendorConfiguration";
+import TraditionConfiguration from "./sections/TraditionConfiguration";
 
 export default function BuilderContent() {
 
@@ -26,11 +27,7 @@ export default function BuilderContent() {
         return <VendorConfiguration/>;
 
       case 5:
-        return (
-          <div className="rounded-2xl border border-dashed p-16 text-center">
-            Tradition Configuration
-          </div>
-        );
+        return <TraditionConfiguration />;
 
       case 6:
         return (

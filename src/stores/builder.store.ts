@@ -2,7 +2,6 @@ import { create } from "zustand";
 import { AutoPlannerEngine } from "@/simulation";
 import type { WeddingScenario } from "@/types/scenario";
 
-
 interface BuilderStore {
   currentStep: number;
 
@@ -23,6 +22,8 @@ interface BuilderStore {
   updateVenue: (data: Partial<WeddingScenario["venue"]>) => void;
 
   updateVendor: (data: Partial<WeddingScenario["vendor"]>) => void;
+
+  updateTradition: (data: Partial<WeddingScenario["tradition"]>) => void;
 }
 
 export const useBuilderStore = create<BuilderStore>((set) => ({
@@ -60,6 +61,8 @@ export const useBuilderStore = create<BuilderStore>((set) => ({
     },
 
     tradition: {
+      traditionType: "",
+      packagePrice: 0,
       mahar: 10000000,
       seserahan: 5000000,
     },
@@ -131,5 +134,16 @@ export const useBuilderStore = create<BuilderStore>((set) => ({
         scenario: result.scenario,
       };
     }),
+
+  updateTradition: (data) =>
+    set((state) => ({
+      scenario: {
+        ...state.scenario,
+        tradition: {
+          ...state.scenario.tradition,
+          ...data,
+        },
+      },
+    })),
 
 }));
