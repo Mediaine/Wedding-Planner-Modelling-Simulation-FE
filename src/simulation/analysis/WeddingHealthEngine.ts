@@ -58,11 +58,26 @@ export class WeddingHealthEngine {
     else
       level = "DANGER";
 
+    let status:
+    | "SAFE"
+    | "WARNING"
+    | "OVER_BUDGET";
+
+    if (calculation.remainingBudget < 0) {
+        status = "OVER_BUDGET";
+    } else if (calculation.budgetUsage >= 90) {
+        status = "WARNING";
+    } else {
+        status = "SAFE";
+    }
+
     return {
 
       score,
 
       level,
+
+      status,
 
       foodPercentage,
 

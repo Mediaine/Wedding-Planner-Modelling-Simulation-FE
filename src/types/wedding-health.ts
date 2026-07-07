@@ -7,6 +7,11 @@ export interface WeddingHealth {
     | "GOOD"
     | "WARNING"
     | "DANGER";
+  
+  status:
+    | "SAFE"
+    | "WARNING"
+    | "OVER_BUDGET";
 
   foodPercentage: number;
 

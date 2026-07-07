@@ -11,149 +11,142 @@ const concepts = [
 
   {
 
-    value:"DIY",
+    value: "DIY",
 
-    title:"DIY",
+    title: "DIY",
 
-    description:"Find and manage vendors yourself.",
-
-  },
-
-  {
-
-    value:"Hybrid",
-
-    title:"Hybrid",
-
-    description:"Mix Wedding Organizer with your own vendors.",
+    description: "Find and manage vendors yourself.",
 
   },
 
   {
 
-    value:"Full Package",
+    value: "Hybrid",
 
-    title:"Full Package",
+    title: "Hybrid",
 
-    description:"Everything handled by Wedding Organizer.",
+    description: "Mix Wedding Organizer with your own vendors.",
+
+  },
+
+  {
+
+    value: "Full Package",
+
+    title: "Full Package",
+
+    description: "Everything handled by Wedding Organizer.",
 
   },
 
 ] as const;
 
-export default function WeddingConcept(){
+export default function WeddingConcept() {
 
-const{
+  const {
 
-scenario,
+    scenario,
 
-updateBasic,
+    updateBasic,
 
-}=useBuilderStore();
+  } = useBuilderStore();
 
-return(
+  return (
 
-<AppCard>
+    <AppCard>
 
-<div className="flex items-center gap-3 mb-6">
+      <div className="flex items-center gap-3 mb-6">
 
-<HeartHandshake className="text-primary"/>
+        <HeartHandshake className="text-primary" />
 
-<div>
+        <div>
 
-<h3 className="font-semibold text-lg">
+          <h3 className="font-semibold text-lg">
 
-Wedding Concept
+            Wedding Concept
 
-</h3>
+          </h3>
 
-<p className="text-muted-foreground text-sm">
+          <p className="text-muted-foreground text-sm">
 
-Choose your wedding planning strategy.
+            Choose your wedding planning strategy.
 
-</p>
+          </p>
 
-</div>
+        </div>
 
-</div>
+      </div>
 
-<div className="grid gap-5 lg:grid-cols-3">
+      <div className="grid gap-5 lg:grid-cols-3">
 
-{
+        {
 
-concepts.map((item)=>{
+          concepts.map((item) => {
 
-const active=scenario.basic.concept===item.value;
+            const active = scenario.basic.concept === item.value;
 
-return(
+            return (
 
-<button
-key={item.value}
-onClick={()=>
-updateBasic({
-concept:item.value,
-})
-}
-className={`
+              <button
+                key={item.value}
+                onClick={() =>
+                  updateBasic({
+                    concept: item.value,
+                  })
+                }
+                className={`
 rounded-2xl
 border
 p-6
 text-left
 transition-all
 
-${
+${active
 
-active
-
-?
-
-"border-primary bg-primary/5 shadow"
-
-:
-
-"hover:border-primary"
-
-}
-
+                    ?
+                    "border-primary bg-primary/5 shadow"
+                    :
+                    "hover:border-primary"
+                  }
 `}
->
+              >
 
-<div className="flex items-center justify-between">
+                <div className="flex items-center justify-between">
 
-<h4 className="font-semibold">
+                  <h4 className="font-semibold">
 
-{item.title}
+                    {item.title}
 
-</h4>
+                  </h4>
 
-{
+                  {
 
-active&&<Check
-size={18}
-/>
+                    active && <Check
+                      size={18}
+                    />
 
-}
+                  }
 
-</div>
+                </div>
 
-<p className="mt-4 text-sm text-muted-foreground">
+                <p className="mt-4 text-sm text-muted-foreground">
 
-{item.description}
+                  {item.description}
 
-</p>
+                </p>
 
-</button>
+              </button>
 
-);
+            );
 
-})
+          })
 
-}
+        }
 
-</div>
+      </div>
 
-</AppCard>
+    </AppCard>
 
-);
+  );
 
 }

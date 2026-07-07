@@ -1,9 +1,9 @@
 import { create } from "zustand";
-
+import { AutoPlannerEngine } from "@/simulation";
 import type { WeddingScenario } from "@/types/scenario";
 
-interface BuilderStore {
 
+interface BuilderStore {
   currentStep: number;
 
   scenario: WeddingScenario;
@@ -14,30 +14,21 @@ interface BuilderStore {
 
   goToStep: (step: number) => void;
 
-  updateBasic: (
-    data: Partial<WeddingScenario["basic"]>
-  ) => void;
+  autoPlan: () => void;
 
-  updateGuest: (
-    data: Partial<WeddingScenario["guest"]>
-  ) => void;
+  updateBasic: (data: Partial<WeddingScenario["basic"]>) => void;
 
-  updateVenue: (
-    data: Partial<WeddingScenario["venue"]>
-  ) => void;
+  updateGuest: (data: Partial<WeddingScenario["guest"]>) => void;
 
-  updateVendor:(
-  data:Partial<WeddingScenario["vendor"]>
-  ) => void;
+  updateVenue: (data: Partial<WeddingScenario["venue"]>) => void;
 
+  updateVendor: (data: Partial<WeddingScenario["vendor"]>) => void;
 }
 
 export const useBuilderStore = create<BuilderStore>((set) => ({
-
   currentStep: 1,
 
   scenario: {
-
     basic: {
       scenarioName: "",
       budget: 70000000,
@@ -53,41 +44,35 @@ export const useBuilderStore = create<BuilderStore>((set) => ({
       estimatedAttendance: 1000,
       seating: "Seated",
       meal: "Dinner",
+      mealPrice: 45000,
     },
 
     venue: {
       venueType: "",
-      estimatedCost:0,
-      capacity:0,
-      location:"",
-      facilities:[],
+      estimatedCost: 0,
+      capacity: 0,
+      location: "",
+      facilities: [],
     },
 
     vendor: {
-      selectedPackages:{},
+      selectedPackages: {},
     },
 
     tradition: {
       mahar: 10000000,
       seserahan: 5000000,
     },
-
   },
 
   nextStep: () =>
     set((state) => ({
-      currentStep: Math.min(
-        state.currentStep + 1,
-        6
-      ),
+      currentStep: Math.min(state.currentStep + 1, 6),
     })),
 
   previousStep: () =>
     set((state) => ({
-      currentStep: Math.max(
-        state.currentStep - 1,
-        1
-      ),
+      currentStep: Math.max(state.currentStep - 1, 1),
     })),
 
   goToStep: (step) =>
@@ -105,7 +90,7 @@ export const useBuilderStore = create<BuilderStore>((set) => ({
         },
       },
     })),
-  
+
   updateGuest: (data) =>
     set((state) => ({
       scenario: {
@@ -116,27 +101,35 @@ export const useBuilderStore = create<BuilderStore>((set) => ({
         },
       },
     })),
-  
-  updateVenue:(data)=>
-    set((state)=>({
-    scenario:{
-    ...state.scenario,
-    venue:{
-    ...state.scenario.venue,
-    ...data,
-    },
-    },
+
+  updateVenue: (data) =>
+    set((state) => ({
+      scenario: {
+        ...state.scenario,
+        venue: {
+          ...state.scenario.venue,
+          ...data,
+        },
+      },
     })),
-  
-  updateVendor:(data)=>
-    set((state)=>({
-    scenario:{
-    ...state.scenario,
-    vendor:{
-    ...state.scenario.vendor,
-    ...data,
-    },
-    },
+
+  updateVendor: (data) =>
+    set((state) => ({
+      scenario: {
+        ...state.scenario,
+        vendor: {
+          ...state.scenario.vendor,
+          ...data,
+        },
+      },
     })),
+
+  autoPlan: () =>
+    set((state) => {
+      const result = AutoPlannerEngine.generate(state.scenario);
+      return {
+        scenario: result.scenario,
+      };
+    }),
 
 }));

@@ -29,6 +29,7 @@ export interface GuestConfiguration {
   estimatedAttendance: number;
   seating: "Standing" | "Seated";
   meal: "Lunch" | "Dinner";
+  mealPrice: number;
 }
 
 export interface TraditionConfiguration {

@@ -6,15 +6,9 @@ export type VenueType =
   | "Outdoor";
 
 export interface VenueConfiguration {
-
   venueType: VenueType | "";
-
   estimatedCost: number;
-
   capacity: number;
-
   location: string;
-
   facilities: string[];
-
 }

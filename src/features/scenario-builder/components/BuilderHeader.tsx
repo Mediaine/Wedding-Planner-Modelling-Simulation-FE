@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
 import { useBuilderStore } from "@/stores/builder.store";
@@ -16,6 +17,8 @@ export default function BuilderHeader() {
   const { currentStep } = useBuilderStore();
 
   const progress = Math.round((currentStep / 6) * 100);
+
+  const { autoPlan } = useBuilderStore();
 
   return (
     <div className="space-y-5">
@@ -44,6 +47,12 @@ export default function BuilderHeader() {
         >
           {progress}% Completed
         </Badge>
+
+        <Button
+            onClick={autoPlan}
+        >
+            ✨ Auto Plan
+        </Button>
 
       </div>
 

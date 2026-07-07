@@ -1,57 +1,25 @@
-// import VendorCategory from "./VendorCategory";
-
-// export default function VendorConfiguration(){
-
-// return(
-
-// <div className="space-y-10">
-
-// <VendorCategory
-
-// category="Documentation"
-
-// />
-
-// <VendorCategory
-
-// category="Service"
-
-// />
-
-// <VendorCategory
-
-// category="Food & Beverage"
-
-// />
-
-// </div>
-
-// );
-
-// }
-
 import VendorCategory from "./VendorCategory";
 
-export default function VendorConfiguration(){
+export default function VendorConfiguration() {
 
-return(
+    return (
 
-<div className="space-y-12">
+        <div className="space-y-12">
 
-<VendorCategory
+            <VendorCategory
+                category="Documentation"
+            />
 
-category="Documentation"
+            <VendorCategory
+                category="Food & Beverage"
+            />
 
-/>
+            <VendorCategory
+                category="Drink & Beverage"
+            />
 
-<VendorCategory
+        </div>
 
-category="Food & Beverage"
-
-/>
-
-</div>
-
-);
+    );
 
 }

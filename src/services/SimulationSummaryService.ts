@@ -1,9 +1,11 @@
 import type { WeddingScenario } from "@/types/scenario";
 import type { SimulationSummary } from "@/types/simulation-summary";
 
-import { WeddingHealthEngine } from "@/simulation/WeddingHealthEngine";
-import { RecommendationEngine } from "@/simulation/RecommendationEngine";
-import { WeddingEngine } from "@/simulation/WeddingEngine";
+import { WeddingHealthEngine } from "@/simulation/analysis/WeddingHealthEngine";
+import { RecommendationEngine } from "@/simulation/analysis/RecommendationEngine";
+import { WeddingEngine } from "@/simulation/core/WeddingEngine";
+import { BudgetAllocationEngine } from "@/simulation/budget/BudgetAllocationEngine";
+import { WeddingInsightEngine } from "@/simulation/analysis/WeddingInsightEngine";
 
 export class SimulationSummaryService {
 
@@ -22,6 +24,17 @@ export class SimulationSummaryService {
     const recommendations =
       RecommendationEngine.calculate(
       calculation
+    );
+
+    const allocation =
+      BudgetAllocationEngine.calculate(
+        calculation,
+      );
+
+    const insights =
+      WeddingInsightEngine.generate(
+        calculation,
+          scenario,
     );
 
     return {
@@ -60,13 +73,17 @@ export class SimulationSummaryService {
 
       venue:
         scenario.venue.venueType || "-",
-
-      status:
-        calculation.status,
       
+      foodCost: 
+        calculation.foodCost,
+
       health,
 
       recommendations,
+
+      allocation,
+
+      insights,
 
     };
 

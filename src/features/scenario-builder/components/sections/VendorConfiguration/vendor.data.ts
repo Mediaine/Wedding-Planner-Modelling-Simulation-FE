@@ -70,13 +70,11 @@
 import type { Vendor } from "@/types/vendor";
 
 export const vendors: Vendor[] = [
-
   {
     id: "photography",
     category: "Documentation",
     name: "Photography",
     packages: [
-
       {
         id: "photo-basic",
         name: "Basic",
@@ -97,7 +95,6 @@ export const vendors: Vendor[] = [
         description: "Full Team",
         cost: 10000000,
       },
-
     ],
   },
 
@@ -106,7 +103,6 @@ export const vendors: Vendor[] = [
     category: "Documentation",
     name: "Videography",
     packages: [
-
       {
         id: "video-basic",
         name: "Basic",
@@ -127,16 +123,14 @@ export const vendors: Vendor[] = [
         description: "2 Camera + Drone",
         cost: 9500000,
       },
-
     ],
   },
 
   {
-    id: "coffee",
-    category: "Food & Beverage",
-    name: "Coffee Corner",
+    id: "drink",
+    category: "Drink & Beverage",
+    name: "Drink Corner",
     packages: [
-
       {
         id: "coffee-small",
         name: "100 Cup",
@@ -153,12 +147,43 @@ export const vendors: Vendor[] = [
 
       {
         id: "coffee-unlimited",
-        name: "Unlimited",
+        name: "Coffee Unlimited",
         description: "Unlimited",
         cost: 6500000,
       },
 
+      {
+        id: "icecream",
+        name: "Ice Cream Booth",
+        description: "Unlimited Ice Cream",
+        cost: 2500000,
+      },
     ],
   },
 
+  {
+    id: "food",
+    category: "Food & Beverage",
+    name: "Food Corner",
+    packages: [
+      {
+        id: "bakso",
+        name: "Bakso",
+        description: "Bakso Corner",
+        cost: 2500000,
+      },
+      {
+        id: "siomay",
+        name: "Siomay",
+        description: "Siomay Corner",
+        cost: 2500000,
+      },
+      {
+        id: "sate",
+        name: "Sate",
+        description: "Sate Corner",
+        cost: 3500000,
+      },
+    ],
+  },
 ];

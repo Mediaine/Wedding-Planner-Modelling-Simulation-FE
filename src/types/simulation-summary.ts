@@ -1,5 +1,7 @@
 import type { Recommendation } from "./recommendation";
 import type { WeddingHealth } from "./wedding-health";
+import type { BudgetAllocation } from "./budget-allocation";
+import type { WeddingInsight } from "./wedding-insight";
 
 export interface SimulationSummary {
 
@@ -25,13 +27,14 @@ export interface SimulationSummary {
 
   venue:string;
 
-  status:
-    | "SAFE"
-    | "WARNING"
-    | "OVER_BUDGET";
-
   health: WeddingHealth;
 
   recommendations: Recommendation[];
+
+  allocation: BudgetAllocation;
+
+  insights: WeddingInsight[];
+
+  foodCost: number;
 
 }

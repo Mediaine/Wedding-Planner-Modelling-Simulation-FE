@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+// import { Check } from "lucide-react";
 
 import AppCard from "@/components/common/AppCard";
 
@@ -36,17 +36,17 @@ export default function VendorPackageCard({
 
             <AppCard
                 className={`
+rounded-2xl
+border
+p-6
+text-left
 transition-all
-hover:shadow-lg
 
 ${selected
-                        ?
-
-                        "border-primary bg-primary/5"
-
-                        :
-
-                        ""
+                                    ?
+                                    "border-primary bg-primary/5 shadow"
+                                    :
+                                    "hover:border-primary"
 
                     }
 `}
@@ -76,13 +76,10 @@ ${selected
 
                     </div>
 
-                    {
-
+                    {/* {
                         selected &&
-
                         <Check className="text-primary" />
-
-                    }
+                    } */}
 
                 </div>
 

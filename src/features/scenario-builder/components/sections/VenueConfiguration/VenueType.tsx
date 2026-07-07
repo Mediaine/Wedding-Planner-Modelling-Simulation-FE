@@ -85,13 +85,22 @@ export default function VenueType() {
                   estimatedCost: item.cost,
                 })
               }
-              className={`rounded-2xl border p-6 text-left transition-all
+              className={`
+rounded-2xl
+border
+p-6
+text-left
+transition-all
 
-              ${
-                active
-                  ? "border-primary bg-primary/5 shadow"
-                  : "hover:border-primary"
-              }`}
+${active
+
+                  ?
+                  "border-primary bg-primary/5 shadow"
+                  :
+                  "hover:border-primary"
+                }
+`}
+
             >
 
               <div className="flex items-center justify-between">
