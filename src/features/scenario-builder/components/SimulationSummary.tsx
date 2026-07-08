@@ -1,14 +1,15 @@
-import SummaryHeader from "./summary/SummaryHeader";
-import BudgetOverview from "./summary/BudgetOverview";
-import BudgetAllocation from "./summary/BudgetAllocation";
-import RecommendationPanel from "./summary/RecommendationPanel";
-import RemainingBudget from "./summary/RemainingBudget";
-import LiveSummary from "./summary/LiveSummary";
-import WeddingInsightPanel from "./summary/WeddingInsightPanel";
-import FoodCostCard from "./summary/FoodCostCard";
+// import SummaryHeader from "./summary/SummaryHeader";
+// import BudgetOverview from "./summary/BudgetOverview";
+// import BudgetAllocation from "./summary/BudgetAllocation";
+// import RecommendationPanel from "./summary/RecommendationPanel";
+// import RemainingBudget from "./summary/RemainingBudget";
+// import LiveSummary from "./summary/LiveSummary";
+// import WeddingInsightPanel from "./summary/WeddingInsightPanel";
+// import FoodCostCard from "./summary/FoodCostCard";
+// import TraditionCard from "./summary/TraditionCard";
 import AppCard from "@/components/common/AppCard";
-import TraditionCard from "./summary/TraditionCard";
-
+import CostOverview from "./summary/CostOverview";
+import WeddingCostBreakdown from "./summary/WeddingCostBreakdown";
 import { useBuilderStore } from "@/stores/builder.store";
 
 import { SimulationSummaryService } from "@/services/SimulationSummaryService";
@@ -32,7 +33,22 @@ export default function SimulationSummary() {
 
         <div className="space-y-6">
 
-          <SummaryHeader
+          <CostOverview
+            budget={summary.budget}
+            estimatedCost={summary.estimatedCost}
+            remainingBudget={summary.remainingBudget}
+          />
+
+
+          <WeddingCostBreakdown
+            food={summary.foodCost}
+            venue={summary.venueCost}
+            vendor={summary.vendorCost}
+            tradition={summary.traditionCost}
+          />
+
+
+          {/* <SummaryHeader
             score={summary.health.score}
             level={summary.health.level}
           />
@@ -85,8 +101,8 @@ export default function SimulationSummary() {
           />
 
           <WeddingInsightPanel
-              items={summary.insights}
-          />
+            items={summary.insights}
+          /> */}
 
         </div>
 

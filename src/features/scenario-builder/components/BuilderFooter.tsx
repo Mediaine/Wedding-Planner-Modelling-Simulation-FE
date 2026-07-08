@@ -1,18 +1,46 @@
 import { Button } from "@/components/ui/button";
-
+import { toast } from "sonner";
+import { TOTAL_BUILDER_STEPS } from "../constants/builder-steps";
 import { useBuilderStore } from "@/stores/builder.store";
 
+const TOTAL_STEPS = 6;
+
 export default function BuilderFooter() {
+
   const {
     currentStep,
     previousStep,
     nextStep,
   } = useBuilderStore();
 
-  const isFirst = currentStep === 1;
-  const isLast = currentStep === 6;
+  const isFirst =
+    currentStep === 1;
+
+  // const isLast =
+  //   currentStep === TOTAL_STEPS;
+  
+  const isLast =
+    currentStep === TOTAL_BUILDER_STEPS;
+
+  const handleRunSimulation = () => {
+
+    // Sprint 15
+    // nanti diganti menjadi:
+    //
+    // ScenarioSimulationEngine.run(...)
+    //
+    // navigate("/scenario-result")
+
+    toast.success(
+      "Scenario is ready for simulation."
+    );
+
+    console.log("Run Simulation");
+
+  };
 
   return (
+
     <div className="flex items-center justify-between border-t pt-8">
 
       <Button
@@ -25,22 +53,26 @@ export default function BuilderFooter() {
 
       <div className="text-sm text-muted-foreground">
 
-        Step {currentStep} of 6
+        Step {currentStep} of {TOTAL_STEPS}
 
       </div>
 
-      {!isLast ? (
-        <Button onClick={nextStep}>
-          Next
-        </Button>
-      ) : (
-        <Button>
-
-          Run Simulation
-
-        </Button>
-      )}
+      <Button
+        onClick={
+          isLast
+            ? handleRunSimulation
+            : nextStep
+        }
+      >
+        {
+          isLast
+            ? "Run Simulation"
+            : "Next"
+        }
+      </Button>
 
     </div>
+
   );
+
 }

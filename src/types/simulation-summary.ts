@@ -47,4 +47,8 @@ export interface SimulationSummary {
 
   traditionCost: number;
 
+  venueCost:number;
+
+  vendorCost:number;
+
 }

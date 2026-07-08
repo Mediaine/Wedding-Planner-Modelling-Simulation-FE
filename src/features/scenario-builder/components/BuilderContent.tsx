@@ -5,7 +5,7 @@ import VenueConfiguration from "./sections/VenueConfiguration";
 import SimulationSummary from "./SimulationSummary";
 import VendorConfiguration from "./sections/VendorConfiguration";
 import TraditionConfiguration from "./sections/TraditionConfiguration";
-
+import Review from "./review";
 export default function BuilderContent() {
 
   const { currentStep } = useBuilderStore();
@@ -30,11 +30,7 @@ export default function BuilderContent() {
         return <TraditionConfiguration />;
 
       case 6:
-        return (
-          <div className="rounded-2xl border border-dashed p-16 text-center">
-            Review
-          </div>
-        );
+         return <Review />;
 
       default:
         return null;

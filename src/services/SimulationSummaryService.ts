@@ -99,6 +99,12 @@ export class SimulationSummaryService {
 
       traditionCost:
         calculation.traditionCost,
+      
+      venueCost:
+        calculation.venueCost,
+
+      vendorCost:
+        calculation.vendorCost,
 
     };
 
