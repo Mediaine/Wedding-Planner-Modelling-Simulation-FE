@@ -4,6 +4,7 @@ import ReviewVenue from "./ReviewVenue";
 import ReviewVendor from "./ReviewVendor";
 import ReviewTradition from "./ReviewTradition";
 import ReviewCost from "./ReviewCost";
+import ReviewValidation from "./ReviewValidation";
 
 export default function Review() {
 
@@ -38,6 +39,8 @@ export default function Review() {
             <ReviewTradition />
 
             <ReviewCost />
+
+            <ReviewValidation />
 
         </div>
 

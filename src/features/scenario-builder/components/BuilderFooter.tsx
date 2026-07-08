@@ -2,12 +2,13 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { TOTAL_BUILDER_STEPS } from "../constants/builder-steps";
 import { useBuilderStore } from "@/stores/builder.store";
-
+import { ReviewValidationEngine } from "@/validation/ReviewValidationEngine";
 const TOTAL_STEPS = 6;
 
 export default function BuilderFooter() {
 
   const {
+    scenario,
     currentStep,
     previousStep,
     nextStep,
@@ -16,9 +17,6 @@ export default function BuilderFooter() {
   const isFirst =
     currentStep === 1;
 
-  // const isLast =
-  //   currentStep === TOTAL_STEPS;
-  
   const isLast =
     currentStep === TOTAL_BUILDER_STEPS;
 
@@ -39,6 +37,11 @@ export default function BuilderFooter() {
 
   };
 
+  const validation =
+    ReviewValidationEngine.validate(
+      scenario,
+    );
+
   return (
 
     <div className="flex items-center justify-between border-t pt-8">
@@ -58,17 +61,30 @@ export default function BuilderFooter() {
       </div>
 
       <Button
+
+        disabled={
+          isLast &&
+          !validation.ready
+        }
+
         onClick={
           isLast
             ? handleRunSimulation
             : nextStep
         }
+
       >
+
         {
+
           isLast
+
             ? "Run Simulation"
+
             : "Next"
+
         }
+
       </Button>
 
     </div>
