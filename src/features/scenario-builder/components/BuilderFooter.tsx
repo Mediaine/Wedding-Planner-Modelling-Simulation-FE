@@ -2,10 +2,21 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { TOTAL_BUILDER_STEPS } from "../constants/builder-steps";
 import { useBuilderStore } from "@/stores/builder.store";
-import { ReviewValidationEngine } from "@/validation/ReviewValidationEngine";
+// import { ReviewValidationEngine } from "@/validation/ReviewValidationEngine";
+import { ScenarioSimulationEngine } from "@/simulation/scenario/ScenarioSimulationEngine";
+import { useScenarioResultStore } from "@/stores/scenario-result.store";
+import { useNavigate } from "react-router-dom";
+
 const TOTAL_STEPS = 6;
 
 export default function BuilderFooter() {
+
+  const navigate =
+    useNavigate();
+
+  const {
+    setResult,
+  } = useScenarioResultStore();
 
   const {
     scenario,
@@ -21,26 +32,41 @@ export default function BuilderFooter() {
     currentStep === TOTAL_BUILDER_STEPS;
 
   const handleRunSimulation = () => {
+    try {
+      const result =
+        ScenarioSimulationEngine.run(
+          scenario,
+        );
+      
+      setResult(result);
+      
+      // console.log(result);
 
-    // Sprint 15
-    // nanti diganti menjadi:
-    //
-    // ScenarioSimulationEngine.run(...)
-    //
-    // navigate("/scenario-result")
+      toast.success(
+        "Simulation completed successfully.",
+      );
 
-    toast.success(
-      "Scenario is ready for simulation."
-    );
+      // Navigasi to page
+      navigate("/scenario-result");
 
-    console.log("Run Simulation");
+    } catch (error) {
+      
+      // console.error(error);
+      
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "Simulation failed.",
+      );
+
+    }
 
   };
 
-  const validation =
-    ReviewValidationEngine.validate(
-      scenario,
-    );
+  // const validation =
+  //   ReviewValidationEngine.validate(
+  //     scenario,
+  //   );
 
   return (
 
@@ -60,7 +86,7 @@ export default function BuilderFooter() {
 
       </div>
 
-      <Button
+      {/* <Button
 
         disabled={
           isLast &&
@@ -85,7 +111,21 @@ export default function BuilderFooter() {
 
         }
 
-      </Button>
+      </Button> */}
+
+      <Button
+  onClick={
+    isLast
+      ? handleRunSimulation
+      : nextStep
+  }
+>
+  {
+    isLast
+      ? "Run Simulation"
+      : "Next"
+  }
+</Button>
 
     </div>
 
