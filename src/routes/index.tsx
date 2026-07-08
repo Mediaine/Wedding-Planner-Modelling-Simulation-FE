@@ -9,6 +9,7 @@ import ScenarioComparisonPage from "@/features/scenario-comparison/ScenarioCompa
 import VendorsPage from "@/features/vendors/VendorsPage";
 import SettingsPage from "@/features/settings/SettingsPage";
 import AIInsightPage from "@/features/ai-insight/AIInsightPage";
+import SimulationLoadingPage from "@/features/simulation-loading/SimulationLoadingPage";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
       {
         path: "scenario-result",
         element: <ScenarioResultPage />,
+      },
+      {
+        path: "simulation-loading",
+        element: <SimulationLoadingPage />,
       },
       {
         path: "scenario-comparison",

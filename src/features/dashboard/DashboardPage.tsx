@@ -23,7 +23,7 @@ export default function DashboardPage() {
     <div className="space-y-10">
 
       <PageTitle
-        title="Welcome Back 👋"
+        title="Welcome"
         description="Let's build your perfect wedding."
       />
 

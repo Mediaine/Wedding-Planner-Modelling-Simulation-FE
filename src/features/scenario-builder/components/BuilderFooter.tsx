@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { TOTAL_BUILDER_STEPS } from "../constants/builder-steps";
 import { useBuilderStore } from "@/stores/builder.store";
-// import { ReviewValidationEngine } from "@/validation/ReviewValidationEngine";
+import { ReviewValidationEngine } from "@/validation/ReviewValidationEngine";
 import { ScenarioSimulationEngine } from "@/simulation/scenario/ScenarioSimulationEngine";
 import { useScenarioResultStore } from "@/stores/scenario-result.store";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +18,13 @@ export default function BuilderFooter() {
     setResult,
   } = useScenarioResultStore();
 
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const {
     scenario,
     currentStep,
@@ -31,15 +38,20 @@ export default function BuilderFooter() {
   const isLast =
     currentStep === TOTAL_BUILDER_STEPS;
 
+  const validation =
+    ReviewValidationEngine.validate(
+      scenario,
+    );
+  
   const handleRunSimulation = () => {
     try {
       const result =
         ScenarioSimulationEngine.run(
           scenario,
         );
-      
+
       setResult(result);
-      
+
       // console.log(result);
 
       toast.success(
@@ -47,86 +59,60 @@ export default function BuilderFooter() {
       );
 
       // Navigasi to page
-      navigate("/scenario-result");
+      // navigate("/scenario-result");
+      navigate("/simulation-loading");
 
     } catch (error) {
-      
+
       // console.error(error);
-      
+
       toast.error(
         error instanceof Error
           ? error.message
           : "Simulation failed.",
       );
-
     }
-
   };
 
-  // const validation =
-  //   ReviewValidationEngine.validate(
-  //     scenario,
-  //   );
 
   return (
-
     <div className="flex items-center justify-between border-t pt-8">
-
       <Button
         variant="outline"
         disabled={isFirst}
-        onClick={previousStep}
+        onClick={() => {
+          previousStep();
+          scrollTop();
+        }}
       >
         Previous
       </Button>
 
       <div className="text-sm text-muted-foreground">
-
         Step {currentStep} of {TOTAL_STEPS}
-
       </div>
 
-      {/* <Button
-
+      <Button
         disabled={
           isLast &&
           !validation.ready
         }
-
-        onClick={
-          isLast
-            ? handleRunSimulation
-            : nextStep
-        }
-
+        
+        onClick={() => {
+          if (isLast) {
+            handleRunSimulation();
+          } else {
+            nextStep();
+            scrollTop();
+          }
+        }}
       >
-
         {
-
           isLast
-
             ? "Run Simulation"
-
             : "Next"
-
         }
-
-      </Button> */}
-
-      <Button
-  onClick={
-    isLast
-      ? handleRunSimulation
-      : nextStep
-  }
->
-  {
-    isLast
-      ? "Run Simulation"
-      : "Next"
-  }
-</Button>
-
+      </Button>
     </div>
 
   );

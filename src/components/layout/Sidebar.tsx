@@ -11,13 +11,13 @@ export default function Sidebar() {
 
         <h2 className="text-xl font-bold">
 
-          💍 {appConfig.name}
+          {appConfig.name}
 
         </h2>
 
         <p className="mt-2 text-sm text-muted-foreground">
 
-          Wedding Modelling & Simulation
+          Intelligence Platform
 
         </p>
 

@@ -1,6 +1,6 @@
-import { Sparkles } from "lucide-react";
+// import { Sparkles } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 
 export default function Topbar() {
   return (
@@ -9,26 +9,24 @@ export default function Topbar() {
       <div>
 
         <h2 className="font-semibold">
-
-          Wedding Studio
-
+          AI-Powered 
         </h2>
 
         <p className="text-sm text-muted-foreground">
 
-          Wedding Modelling & Simulation
+          Wedding Planning Modeling & Simulation
 
         </p>
 
       </div>
 
-      <Button>
+      {/* <Button>
 
         <Sparkles />
 
         New Scenario
 
-      </Button>
+      </Button> */}
 
     </header>
   );

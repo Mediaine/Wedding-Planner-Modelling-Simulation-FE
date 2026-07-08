@@ -1,5 +1,5 @@
 export const appConfig = {
-  name: "Wedding Studio",
+  name: "Wedding Planner",
   version: "1.0.0",
   simulationMode: "Offline",
 };
