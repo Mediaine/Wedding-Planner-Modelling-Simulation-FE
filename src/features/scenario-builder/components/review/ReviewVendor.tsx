@@ -54,7 +54,7 @@ export default function ReviewVendor(){
                     vendors.map((vendor)=>(
 
                         <div
-                            key={vendor.vendorId}
+                            key={vendor.packageId}
                             className="flex justify-between"
                         >
 

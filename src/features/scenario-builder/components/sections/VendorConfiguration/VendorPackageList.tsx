@@ -1,4 +1,8 @@
+import { Check, Sparkles } from "lucide-react";
+
 import VendorPackageCard from "./VendorPackageCard";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useBuilderStore } from "@/stores/builder.store";
 import type { Vendor } from "@/types/vendor";
 import type { SelectedVendorPackage } from "@/types/vendor";
@@ -23,65 +27,171 @@ export default function VendorPackageList({
 
   } = useBuilderStore();
 
+  const selectedPackages =
+    scenario.vendor.selectedPackages;
+
+  const customId =
+    `${vendor.id}-custom`;
+
+  const customEntry =
+    selectedPackages[customId];
+
+  const customSelected =
+    Boolean(customEntry);
+
+  const customCost =
+    customEntry?.cost ?? 0;
+
+  const toggle = (
+    key: string,
+    entry: SelectedVendorPackage,
+  ) => {
+
+    const next = {
+      ...selectedPackages,
+    };
+
+    if (next[key]) {
+
+      delete next[key];
+
+    } else {
+
+      next[key] = entry;
+
+    }
+
+    updateVendor({
+      selectedPackages: next,
+    });
+
+  };
+
   return (
 
-    <div className="grid gap-4 md:grid-cols-3">
+    <div className="space-y-8">
 
-      {
+      <div className="grid gap-5 lg:grid-cols-3">
 
-        vendor.packages.map((item)=>{
-          
-          const selectedPackage =
-          scenario.vendor.selectedPackages[vendor.id];
+        {
 
-          const selected =
-          selectedPackage?.packageId === item.id;
+          vendor.packages.map((item) => {
 
-          return(
+            const selected =
+              Boolean(selectedPackages[item.id]);
 
-            <VendorPackageCard
+            return (
 
-              key={item.id}
+              <VendorPackageCard
 
-              item={item}
+                key={item.id}
 
-              selected={selected}
+                item={item}
 
-              onClick={()=>{
+                selected={selected}
 
-                const next: SelectedVendorPackage = {
+                onClick={() =>
+                  toggle(item.id, {
+                    vendorId: vendor.id,
+                    packageId: item.id,
+                    packageName: item.name,
+                    cost: item.cost,
+                  })
+                }
 
+              />
+
+            );
+
+          })
+
+        }
+
+        <button
+          onClick={() =>
+            toggle(customId, {
+              vendorId: vendor.id,
+              packageId: customId,
+              packageName: "Custom",
+              cost: customCost,
+            })
+          }
+          className={`
+rounded-2xl
+border
+p-6
+text-left
+transition-all
+
+${customSelected
+              ?
+              "border-primary bg-primary/5 shadow"
+              :
+              "hover:border-primary"
+            }
+`}
+
+        >
+
+          <div className="flex items-center justify-between">
+
+            <Sparkles size={32} />
+
+            {customSelected && <Check size={20} />}
+
+          </div>
+
+          <h3 className="mt-6 text-lg font-semibold">
+
+            Custom
+
+          </h3>
+
+          <p className="mt-2 text-sm text-muted-foreground">
+
+            Enter your own {vendor.name.toLowerCase()} price
+
+          </p>
+
+          <div className="mt-6 text-lg font-bold">
+
+            Rp {customCost.toLocaleString("id-ID")}
+
+          </div>
+
+        </button>
+
+      </div>
+
+      <div className="space-y-3">
+
+        <Label>
+          Custom {vendor.name} Cost
+        </Label>
+
+        <Input
+          type="number"
+          value={customCost}
+          onChange={(e) =>
+            updateVendor({
+              selectedPackages: {
+                ...selectedPackages,
+                [customId]: {
                   vendorId: vendor.id,
+                  packageId: customId,
+                  packageName: "Custom",
+                  cost: Number(e.target.value),
+                },
+              },
+            })
+          }
+        />
 
-                  packageId: item.id,
+        <p className="text-xs text-muted-foreground">
+          Add a custom price for this vendor if needed.
+        </p>
 
-                  packageName: item.name,
-
-                  cost: item.cost,
-
-                  };
-
-                  updateVendor({
-
-                  selectedPackages:{
-
-                  ...scenario.vendor.selectedPackages,
-
-                  [vendor.id]: next,
-
-                  },
-
-                  });
-
-              }}
-
-            />
-
-          );
-
-        })
-
-      }
+      </div>
 
     </div>
 

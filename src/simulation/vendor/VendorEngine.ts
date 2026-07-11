@@ -8,7 +8,7 @@ export class VendorEngine {
     return Object
       .values(vendors)
       .reduce(
-      (sum, vendor) => sum + vendor.cost,
+      (sum, vendor) => sum + Math.max(0, vendor.cost),
       0,
     );
 

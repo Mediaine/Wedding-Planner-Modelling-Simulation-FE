@@ -1,6 +1,4 @@
-// import { Check } from "lucide-react";
-
-import AppCard from "@/components/common/AppCard";
+import { Check, Package } from "lucide-react";
 
 import type { VendorPackage } from "@/types/vendor";
 
@@ -27,15 +25,8 @@ export default function VendorPackageCard({
     return (
 
         <button
-
-            className="w-full text-left"
-
             onClick={onClick}
-
-        >
-
-            <AppCard
-                className={`
+            className={`
 rounded-2xl
 border
 p-6
@@ -43,47 +34,40 @@ text-left
 transition-all
 
 ${selected
-                                    ?
-                                    "border-primary bg-primary/5 shadow"
-                                    :
-                                    "hover:border-primary"
-
-                    }
+                    ?
+                    "border-primary bg-primary/5 shadow"
+                    :
+                    "hover:border-primary"
+                }
 `}
-            >
 
-                <div className="flex justify-between">
+        >
 
-                    <div>
+            <div className="flex items-center justify-between">
 
-                        <h4 className="font-semibold">
+                <Package size={32} />
 
-                            {item.name}
+                {selected && <Check size={20} />}
 
-                        </h4>
+            </div>
 
-                        <p className="mt-2 text-sm text-muted-foreground">
+            <h3 className="mt-6 text-lg font-semibold">
 
-                            {item.description}
+                {item.name}
 
-                        </p>
+            </h3>
 
-                        <p className="mt-5 font-bold">
+            <p className="mt-2 text-sm text-muted-foreground">
 
-                            Rp {item.cost.toLocaleString("id-ID")}
+                {item.description}
 
-                        </p>
+            </p>
 
-                    </div>
+            <div className="mt-6 text-lg font-bold">
 
-                    {/* {
-                        selected &&
-                        <Check className="text-primary" />
-                    } */}
+                Rp {item.cost.toLocaleString("id-ID")}
 
-                </div>
-
-            </AppCard>
+            </div>
 
         </button>
 
