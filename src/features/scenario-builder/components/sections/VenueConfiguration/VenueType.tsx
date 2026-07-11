@@ -3,11 +3,14 @@ import {
   Check,
   House,
   Hotel,
+  Sparkles,
   Trees,
   Warehouse,
 } from "lucide-react";
 
 import AppCard from "@/components/common/AppCard";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useBuilderStore } from "@/stores/builder.store";
 
 const venueTypes = [
@@ -50,6 +53,8 @@ const venueTypes = [
 
 export default function VenueType() {
   const { scenario, updateVenue } = useBuilderStore();
+
+  const { venueType, estimatedCost } = scenario.venue;
 
   return (
     <AppCard>
@@ -134,6 +139,80 @@ ${active
           );
 
         })}
+
+        <button
+          onClick={() =>
+            updateVenue({
+              venueType: "Custom",
+            })
+          }
+          className={`
+rounded-2xl
+border
+p-6
+text-left
+transition-all
+
+${venueType === "Custom"
+              ?
+              "border-primary bg-primary/5 shadow"
+              :
+              "hover:border-primary"
+            }
+`}
+
+        >
+
+          <div className="flex items-center justify-between">
+
+            <Sparkles size={32} />
+
+            {venueType === "Custom" && <Check size={20} />}
+
+          </div>
+
+          <h3 className="mt-6 text-lg font-semibold">
+
+            Custom Venue
+
+          </h3>
+
+          <p className="mt-2 text-sm text-muted-foreground">
+
+            Enter your own venue price
+
+          </p>
+
+          <div className="mt-6 text-lg font-bold">
+
+            Rp {estimatedCost.toLocaleString("id-ID")}
+
+          </div>
+
+        </button>
+
+      </div>
+
+      <div className="mt-8 space-y-3">
+
+        <Label>
+          Custom Venue Cost
+        </Label>
+
+        <Input
+          type="number"
+          value={estimatedCost}
+          onChange={(e) =>
+            updateVenue({
+              venueType: "Custom",
+              estimatedCost: Number(e.target.value),
+            })
+          }
+        />
+
+        <p className="text-xs text-muted-foreground">
+          Override venue price if needed.
+        </p>
 
       </div>
 

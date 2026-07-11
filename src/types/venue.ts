@@ -3,7 +3,8 @@ export type VenueType =
   | "Hotel"
   | "Garden"
   | "Home"
-  | "Outdoor";
+  | "Outdoor"
+  | "Custom";
 
 export type DecorationPackage =
   | "Simple"
