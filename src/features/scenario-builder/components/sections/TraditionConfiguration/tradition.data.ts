@@ -1,4 +1,4 @@
-import type { TraditionType } from "@/types/tradition";
+import type { TraditionType, TraditionTier } from "@/types/tradition";
 
 export interface TraditionPackage {
 
@@ -11,6 +11,82 @@ export interface TraditionPackage {
     description: string;
 
 }
+
+export interface TraditionTierPackage {
+
+    id: string;
+
+    label: Exclude<TraditionTier, "Custom" | "">;
+
+    price: number;
+
+    description: string;
+
+}
+
+export const maharPackages: TraditionTierPackage[] = [
+
+    {
+        id: "mahar-simple",
+        label: "Simple",
+        price: 5000000,
+        description: "Mahar sederhana",
+    },
+
+    {
+        id: "mahar-classic",
+        label: "Classic",
+        price: 10000000,
+        description: "Mahar standar",
+    },
+
+    {
+        id: "mahar-luxury",
+        label: "Luxury",
+        price: 25000000,
+        description: "Mahar premium",
+    },
+
+    {
+        id: "mahar-royal",
+        label: "Royal",
+        price: 50000000,
+        description: "Mahar mewah",
+    },
+
+];
+
+export const seserahanPackages: TraditionTierPackage[] = [
+
+    {
+        id: "seserahan-simple",
+        label: "Simple",
+        price: 3000000,
+        description: "Seserahan sederhana",
+    },
+
+    {
+        id: "seserahan-classic",
+        label: "Classic",
+        price: 5000000,
+        description: "Seserahan standar",
+    },
+
+    {
+        id: "seserahan-luxury",
+        label: "Luxury",
+        price: 10000000,
+        description: "Seserahan premium",
+    },
+
+    {
+        id: "seserahan-royal",
+        label: "Royal",
+        price: 20000000,
+        description: "Seserahan mewah",
+    },
+
+];
 
 export const traditionPackages: TraditionPackage[] = [
 

@@ -66,8 +66,10 @@ export const useBuilderStore = create<BuilderStore>((set) => ({
     tradition: {
       traditionType: "",
       packagePrice: 0,
-      mahar: 10000000,
-      seserahan: 5000000,
+      maharPackage: "",
+      mahar: 0,
+      seserahanPackage: "",
+      seserahan: 0,
     },
   },
 

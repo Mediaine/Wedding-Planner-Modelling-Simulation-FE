@@ -10,11 +10,11 @@ export class TraditionEngine {
 
         return (
 
-            tradition.packagePrice +
+            Math.max(0, tradition.packagePrice) +
 
-            tradition.mahar +
+            Math.max(0, tradition.mahar) +
 
-            tradition.seserahan
+            Math.max(0, tradition.seserahan)
 
         );
 

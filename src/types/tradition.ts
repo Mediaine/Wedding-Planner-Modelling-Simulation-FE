@@ -6,7 +6,16 @@ export type TraditionType =
   | "Batak"
   | "Bali"
   | "Betawi"
-  | "Bugis";
+  | "Bugis"
+  | "Custom";
+
+export type TraditionTier =
+  | "Simple"
+  | "Classic"
+  | "Luxury"
+  | "Royal"
+  | "Custom"
+  | "";
 
 export interface TraditionConfiguration {
 
@@ -14,7 +23,11 @@ export interface TraditionConfiguration {
 
   packagePrice: number;
 
+  maharPackage: TraditionTier;
+
   mahar: number;
+
+  seserahanPackage: TraditionTier;
 
   seserahan: number;
 

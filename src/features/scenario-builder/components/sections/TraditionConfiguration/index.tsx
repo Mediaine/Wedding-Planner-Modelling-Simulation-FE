@@ -1,5 +1,4 @@
 import TraditionPackage from "./TraditionPackage";
-import TraditionPrice from "./TraditionPrice";
 import Mahar from "./Mahar";
 import Seserahan from "./Seserahan";
 import TraditionPreview from "./TraditionPreview";
@@ -11,8 +10,6 @@ export default function TraditionConfiguration() {
         <div className="space-y-8">
 
             <TraditionPackage />
-
-            <TraditionPrice />
 
             <Mahar />
 

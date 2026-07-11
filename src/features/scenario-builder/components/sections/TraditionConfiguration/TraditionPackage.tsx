@@ -1,8 +1,8 @@
-import {
-    Card,
-    CardContent,
-} from "@/components/ui/card";
+import { Check, Landmark, Sparkles } from "lucide-react";
 
+import AppCard from "@/components/common/AppCard";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useBuilderStore } from "@/stores/builder.store";
 import { traditionPackages } from "./tradition.data";
 
@@ -13,97 +13,166 @@ export default function TraditionPackage() {
         updateTradition,
     } = useBuilderStore();
 
+    const { traditionType, packagePrice } = scenario.tradition;
+
     return (
 
-        <div className="space-y-4">
+        <AppCard>
 
-            <div>
+            <div className="mb-8">
 
-                <h3 className="font-semibold">
-
+                <h2 className="text-xl font-bold">
                     Traditional Package
+                </h2>
 
-                </h3>
-
-                <p className="text-sm text-muted-foreground">
-
-                    Select your traditional wedding package
-
+                <p className="text-muted-foreground">
+                    Select your traditional wedding package or enter a custom price.
                 </p>
 
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid gap-5 lg:grid-cols-3">
 
-                {
+                {traditionPackages.map((item) => {
 
-                    traditionPackages.map((item) => {
+                    const active = traditionType === item.name;
 
-                        const active =
-                            scenario.tradition.traditionType === item.name;
+                    return (
 
-                        return (
+                        <button
+                            key={item.id}
+                            onClick={() =>
+                                updateTradition({
+                                    traditionType: item.name,
+                                    packagePrice: item.price,
+                                })
+                            }
+                            className={`
+rounded-2xl
+border
+p-6
+text-left
+transition-all
 
-                            <Card
-
-                                key={item.id}
-
-                                className={`
-                                    rounded-2xl
-                                    border
-                                    p-6
-                                    text-left
-                                    transition-all
-                                    ${active
-                                        ?
-                                        "border-primary bg-primary/5 shadow"
-                                        :
-                                        "hover:border-primary"
-                                }`} 
-
-                                onClick={() =>
-                                    updateTradition({
-                                        traditionType: item.name,
-                                        packagePrice: item.price,
-                                    })
-
+${active
+                                    ?
+                                    "border-primary bg-primary/5 shadow"
+                                    :
+                                    "hover:border-primary"
                                 }
+`}
 
-                            >
+                        >
 
-                                <CardContent className="space-y-2 py-5">
+                            <div className="flex items-center justify-between">
 
-                                    <h4 className="font-semibold">
+                                <Landmark size={32} />
 
-                                        {item.name}
+                                {active && <Check size={20} />}
 
-                                    </h4>
+                            </div>
 
-                                    <p className="text-sm text-muted-foreground">
+                            <h3 className="mt-6 text-lg font-semibold">
 
-                                        {item.description}
+                                {item.name}
 
-                                    </p>
+                            </h3>
 
-                                    <p className="font-bold">
+                            <p className="mt-2 text-sm text-muted-foreground">
 
-                                        Rp {item.price.toLocaleString("id-ID")}
+                                {item.description}
 
-                                    </p>
+                            </p>
 
-                                </CardContent>
+                            <div className="mt-6 text-lg font-bold">
 
-                            </Card>
+                                Rp {item.price.toLocaleString("id-ID")}
 
-                        );
+                            </div>
 
-                    })
+                        </button>
 
-                }
+                    );
+
+                })}
+
+                <button
+                    onClick={() =>
+                        updateTradition({
+                            traditionType: "Custom",
+                        })
+                    }
+                    className={`
+rounded-2xl
+border
+p-6
+text-left
+transition-all
+
+${traditionType === "Custom"
+                            ?
+                            "border-primary bg-primary/5 shadow"
+                            :
+                            "hover:border-primary"
+                        }
+`}
+
+                >
+
+                    <div className="flex items-center justify-between">
+
+                        <Sparkles size={32} />
+
+                        {traditionType === "Custom" && <Check size={20} />}
+
+                    </div>
+
+                    <h3 className="mt-6 text-lg font-semibold">
+
+                        Custom
+
+                    </h3>
+
+                    <p className="mt-2 text-sm text-muted-foreground">
+
+                        Enter your own tradition package price
+
+                    </p>
+
+                    <div className="mt-6 text-lg font-bold">
+
+                        Rp {packagePrice.toLocaleString("id-ID")}
+
+                    </div>
+
+                </button>
 
             </div>
 
-        </div>
+            <div className="mt-8 space-y-3">
+
+                <Label>
+                    Custom Traditional Package Price
+                </Label>
+
+                <Input
+                    type="number"
+                    value={packagePrice}
+                    onChange={(e) =>
+                        updateTradition({
+                            traditionType: "Custom",
+                            packagePrice: Number(e.target.value),
+                        })
+                    }
+                />
+
+                <p className="text-xs text-muted-foreground">
+                    Override package price if needed.
+                </p>
+
+            </div>
+
+        </AppCard>
 
     );
 
