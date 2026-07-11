@@ -8,6 +8,8 @@ interface Props {
 
     selected: boolean;
 
+    disabled?: boolean;
+
     onClick: () => void;
 
 }
@@ -18,6 +20,8 @@ export default function VendorPackageCard({
 
     selected,
 
+    disabled = false,
+
     onClick,
 
 }: Props) {
@@ -26,6 +30,7 @@ export default function VendorPackageCard({
 
         <button
             onClick={onClick}
+            disabled={disabled}
             className={`
 rounded-2xl
 border
@@ -37,7 +42,11 @@ ${selected
                     ?
                     "border-primary bg-primary/5 shadow"
                     :
-                    "hover:border-primary"
+                    disabled
+                        ?
+                        "opacity-50 cursor-not-allowed"
+                        :
+                        "hover:border-primary"
                 }
 `}
 

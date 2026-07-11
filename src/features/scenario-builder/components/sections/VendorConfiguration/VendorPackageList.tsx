@@ -42,6 +42,9 @@ export default function VendorPackageList({
   const customCost =
     customEntry?.cost ?? 0;
 
+  const presetIds =
+    vendor.packages.map((p) => p.id);
+
   const toggle = (
     key: string,
     entry: SelectedVendorPackage,
@@ -60,6 +63,47 @@ export default function VendorPackageList({
       next[key] = entry;
 
     }
+
+    updateVendor({
+      selectedPackages: next,
+    });
+
+  };
+
+  // Selecting Custom is exclusive per vendor:
+  // it clears this vendor's preset packages and keeps only the custom entry.
+  const selectCustom = (
+    cost: number,
+  ) => {
+
+    const next = {
+      ...selectedPackages,
+    };
+
+    presetIds.forEach((id) => {
+      delete next[id];
+    });
+
+    next[customId] = {
+      vendorId: vendor.id,
+      packageId: customId,
+      packageName: "Custom",
+      cost,
+    };
+
+    updateVendor({
+      selectedPackages: next,
+    });
+
+  };
+
+  const clearCustom = () => {
+
+    const next = {
+      ...selectedPackages,
+    };
+
+    delete next[customId];
 
     updateVendor({
       selectedPackages: next,
@@ -90,6 +134,8 @@ export default function VendorPackageList({
 
                 selected={selected}
 
+                disabled={customSelected}
+
                 onClick={() =>
                   toggle(item.id, {
                     vendorId: vendor.id,
@@ -109,12 +155,9 @@ export default function VendorPackageList({
 
         <button
           onClick={() =>
-            toggle(customId, {
-              vendorId: vendor.id,
-              packageId: customId,
-              packageName: "Custom",
-              cost: customCost,
-            })
+            customSelected
+              ? clearCustom()
+              : selectCustom(customCost)
           }
           className={`
 rounded-2xl
@@ -173,17 +216,7 @@ ${customSelected
           type="number"
           value={customCost}
           onChange={(e) =>
-            updateVendor({
-              selectedPackages: {
-                ...selectedPackages,
-                [customId]: {
-                  vendorId: vendor.id,
-                  packageId: customId,
-                  packageName: "Custom",
-                  cost: Number(e.target.value),
-                },
-              },
-            })
+            selectCustom(Number(e.target.value))
           }
         />
 
