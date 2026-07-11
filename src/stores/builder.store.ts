@@ -45,7 +45,8 @@ export const useBuilderStore = create<BuilderStore>((set) => ({
       estimatedAttendance: 1000,
       seating: "Seated",
       meal: "Dinner",
-      mealPrice: 45000,
+      mealPackage: "",
+      mealPrice: 0,
     },
 
     venue: {

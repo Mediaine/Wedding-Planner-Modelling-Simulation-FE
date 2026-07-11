@@ -196,11 +196,15 @@ export class ConstraintEngine {
 
       passed:
 
-        constraints.every(
+        constraints
 
-          constraint => constraint.valid,
+          .filter(
+            constraint => constraint.severity === "ERROR",
+          )
 
-        ),
+          .every(
+            constraint => constraint.valid,
+          ),
 
       constraints,
 

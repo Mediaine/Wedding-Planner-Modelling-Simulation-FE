@@ -25,11 +25,20 @@ export interface ScenarioBasic {
   city: string;
 }
 
+export type MealPackage =
+  | "Economy"
+  | "Standard"
+  | "Premium"
+  | "Luxury"
+  | "Custom"
+  | "";
+
 export interface GuestConfiguration {
   invitation: number;
   estimatedAttendance: number;
   seating: "Standing" | "Seated";
   meal: "Lunch" | "Dinner";
+  mealPackage: MealPackage;
   mealPrice: number;
 }
 

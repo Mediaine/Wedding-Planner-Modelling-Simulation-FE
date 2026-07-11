@@ -1,90 +1,80 @@
-import {
-    Card,
-    CardContent,
-} from "@/components/ui/card";
+import { Check, Sparkles, UtensilsCrossed } from "lucide-react";
 
+import AppCard from "@/components/common/AppCard";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useBuilderStore } from "@/stores/builder.store";
+import type { MealPackage as MealPackageType } from "@/types/scenario";
 
-const packages = [
-
-    {
-        name: "Economy",
-        price: 35000,
-    },
-
-    {
-        name: "Standard",
-        price: 45000,
-    },
-
-    {
-        name: "Premium",
-        price: 60000,
-    },
-
-    {
-        name: "Luxury",
-        price: 85000,
-    },
-
+const mealPackages: {
+  value: Exclude<MealPackageType, "Custom" | "">;
+  title: string;
+  description: string;
+  price: number;
+}[] = [
+  {
+    value: "Economy",
+    title: "Economy",
+    description: "Basic catering menu",
+    price: 35000,
+  },
+  {
+    value: "Standard",
+    title: "Standard",
+    description: "Balanced catering menu",
+    price: 45000,
+  },
+  {
+    value: "Premium",
+    title: "Premium",
+    description: "Premium catering menu",
+    price: 60000,
+  },
+  {
+    value: "Luxury",
+    title: "Luxury",
+    description: "Luxury catering menu",
+    price: 85000,
+  },
 ];
 
 export default function MealPackage() {
+  const { scenario, updateGuest } = useBuilderStore();
 
-    const {
+  const { mealPackage, mealPrice } = scenario.guest;
 
-        scenario,
+  return (
+    <AppCard>
 
-        updateGuest,
+      <div className="mb-8">
 
-    } = useBuilderStore();
+        <h2 className="text-xl font-bold">
+          Meal Package
+        </h2>
 
-    return (
+        <p className="text-muted-foreground">
+          Choose a catering package or enter a custom price per guest.
+        </p>
 
-        <div className="space-y-4">
+      </div>
 
-            <div>
+      <div className="grid gap-5 lg:grid-cols-3">
 
-                <h3 className="font-semibold">
+        {mealPackages.map((item) => {
 
-                    Meal Package
+          const active = mealPackage === item.value;
 
-                </h3>
+          return (
 
-                <p className="text-sm text-muted-foreground">
-
-                    Choose catering package
-
-                </p>
-
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-
-                {
-
-                    packages.map((item) => {
-
-                        const active =
-                            scenario.guest.mealPrice === item.price;
-
-                        return (
-
-                            <Card
-
-                                key={item.name}
-
-                                onClick={() =>
-
-                                    updateGuest({
-
-                                        mealPrice: item.price,
-
-                                    })
-
-                                }
-
-                                className={`
+            <button
+              key={item.value}
+              onClick={() =>
+                updateGuest({
+                  mealPackage: item.value,
+                  mealPrice: item.price,
+                })
+              }
+              className={`
 rounded-2xl
 border
 p-6
@@ -92,44 +82,123 @@ text-left
 transition-all
 
 ${active
-
-                                        ?
-                                        "border-primary bg-primary/5 shadow"
-                                        :
-                                        "hover:border-primary"
-                                    }
+                  ?
+                  "border-primary bg-primary/5 shadow"
+                  :
+                  "hover:border-primary"
+                }
 `}
 
-                            >
+            >
 
-                                <CardContent className="space-y-2 py-5 text-center">
+              <div className="flex items-center justify-between">
 
-                                    <h4 className="font-semibold">
+                <UtensilsCrossed size={32} />
 
-                                        {item.name}
+                {active && <Check size={20} />}
 
-                                    </h4>
+              </div>
 
-                                    <p className="text-sm text-muted-foreground">
+              <h3 className="mt-6 text-lg font-semibold">
 
-                                        Rp {item.price.toLocaleString("id-ID")}
+                {item.title}
 
-                                    </p>
+              </h3>
 
-                                </CardContent>
+              <p className="mt-2 text-sm text-muted-foreground">
 
-                            </Card>
+                {item.description}
 
-                        );
+              </p>
 
-                    })
+              <div className="mt-6 text-lg font-bold">
 
-                }
+                Rp {item.price.toLocaleString("id-ID")}
 
-            </div>
+              </div>
 
-        </div>
+            </button>
 
-    );
+          );
 
+        })}
+
+        <button
+          onClick={() =>
+            updateGuest({
+              mealPackage: "Custom",
+            })
+          }
+          className={`
+rounded-2xl
+border
+p-6
+text-left
+transition-all
+
+${mealPackage === "Custom"
+              ?
+              "border-primary bg-primary/5 shadow"
+              :
+              "hover:border-primary"
+            }
+`}
+
+        >
+
+          <div className="flex items-center justify-between">
+
+            <Sparkles size={32} />
+
+            {mealPackage === "Custom" && <Check size={20} />}
+
+          </div>
+
+          <h3 className="mt-6 text-lg font-semibold">
+
+            Custom Meal
+
+          </h3>
+
+          <p className="mt-2 text-sm text-muted-foreground">
+
+            Enter your own meal price
+
+          </p>
+
+          <div className="mt-6 text-lg font-bold">
+
+            Rp {mealPrice.toLocaleString("id-ID")}
+
+          </div>
+
+        </button>
+
+      </div>
+
+      <div className="mt-8 space-y-3">
+
+        <Label>
+          Custom Meal Price
+        </Label>
+
+        <Input
+          type="number"
+          value={mealPrice}
+          onChange={(e) =>
+            updateGuest({
+              mealPackage: "Custom",
+              mealPrice: Number(e.target.value),
+            })
+          }
+        />
+
+        <p className="text-xs text-muted-foreground">
+          Override package price if needed.
+        </p>
+
+      </div>
+
+    </AppCard>
+  );
 }
