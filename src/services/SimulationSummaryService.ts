@@ -103,6 +103,9 @@ export class SimulationSummaryService {
       venueCost:
         calculation.venueCost,
 
+      decorationCost:
+        scenario.venue.decorationCost,
+
       vendorCost:
         calculation.vendorCost,
 

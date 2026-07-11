@@ -4,6 +4,8 @@ interface Props {
 
     venue: number;
 
+    decoration: number;
+
     vendor: number;
 
     tradition: number;
@@ -29,6 +31,8 @@ export default function WeddingCostBreakdown({
     food,
 
     venue,
+
+    decoration,
 
     vendor,
 
@@ -69,6 +73,14 @@ export default function WeddingCostBreakdown({
                 <span>Venue</span>
 
                 <strong>{money(venue)}</strong>
+
+            </div>
+
+            <div className="flex justify-between pl-4 text-sm text-muted-foreground">
+
+                <span>Decoration</span>
+
+                <span>{money(decoration)}</span>
 
             </div>
 

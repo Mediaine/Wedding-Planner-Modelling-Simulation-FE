@@ -43,6 +43,7 @@ export default function SimulationSummary() {
           <WeddingCostBreakdown
             food={summary.foodCost}
             venue={summary.venueCost}
+            decoration={summary.decorationCost}
             vendor={summary.vendorCost}
             tradition={summary.traditionCost}
           />

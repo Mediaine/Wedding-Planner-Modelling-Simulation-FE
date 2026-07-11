@@ -41,6 +41,7 @@ export class WeddingEngine {
         const venueCost =
             VenueEngine.calculate(
                 scenario.venue.estimatedCost,
+                scenario.venue.decorationCost,
             );
 
         /**

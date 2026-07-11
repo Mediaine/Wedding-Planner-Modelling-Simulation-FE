@@ -44,12 +44,53 @@ export default function ReviewVenue(){
 
                 <div className="flex justify-between">
 
-                    <span>Estimated Cost</span>
+                    <span>Decoration</span>
+
+                    <strong>
+
+                        {scenario.venue.decorationPackage||"-"}
+
+                    </strong>
+
+                </div>
+
+                <div className="flex justify-between">
+
+                    <span>Venue Rental</span>
 
                     <strong>
 
                         {money(
                             scenario.venue.estimatedCost
+                        )}
+
+                    </strong>
+
+                </div>
+
+                <div className="flex justify-between">
+
+                    <span>Decoration Cost</span>
+
+                    <strong>
+
+                        {money(
+                            scenario.venue.decorationCost
+                        )}
+
+                    </strong>
+
+                </div>
+
+                <div className="flex justify-between border-t pt-3">
+
+                    <span>Total Venue Cost</span>
+
+                    <strong>
+
+                        {money(
+                            scenario.venue.estimatedCost +
+                            scenario.venue.decorationCost
                         )}
 
                     </strong>

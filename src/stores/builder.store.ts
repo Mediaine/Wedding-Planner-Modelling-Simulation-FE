@@ -54,6 +54,8 @@ export const useBuilderStore = create<BuilderStore>((set) => ({
       capacity: 0,
       location: "",
       facilities: [],
+      decorationPackage: "",
+      decorationCost: 0,
     },
 
     vendor: {

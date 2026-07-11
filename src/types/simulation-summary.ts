@@ -49,6 +49,8 @@ export interface SimulationSummary {
 
   venueCost:number;
 
+  decorationCost:number;
+
   vendorCost:number;
 
 }
