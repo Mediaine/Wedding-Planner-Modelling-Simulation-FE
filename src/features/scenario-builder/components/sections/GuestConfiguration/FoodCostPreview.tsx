@@ -27,23 +27,16 @@ export default function FoodCostPreview() {
             <CardContent className="space-y-3 py-5">
 
                 <h3 className="font-semibold">
-
                     Estimated Food Cost
-
                 </h3>
 
                 <div className="text-3xl font-bold">
-
                     Rp {total.toLocaleString("id-ID")}
-
                 </div>
 
                 <div className="text-sm text-muted-foreground">
-
                     {attendance.toLocaleString("id-ID")} Guest × Rp{" "}
-
                     {scenario.guest.mealPrice.toLocaleString("id-ID")}
-
                 </div>
 
             </CardContent>

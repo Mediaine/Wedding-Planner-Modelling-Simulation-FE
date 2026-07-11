@@ -2,7 +2,6 @@ import GuestInformation from "./GuestInformation";
 import AttendanceEstimation from "./AttendanceEstimation";
 import MealConfiguration from "./MealConfiguration";
 import SeatingConfiguration from "./SeatingConfiguration";
-import MealPrice from "./MealPrice";
 import FoodCostPreview from "./FoodCostPreview";
 import MealPackage from "./MealPackage";
 
@@ -12,8 +11,6 @@ export default function GuestConfiguration() {
       <GuestInformation />
       <AttendanceEstimation />
       <MealConfiguration />
-      <MealPrice />
-      <FoodCostPreview />
       <MealPackage />
       <FoodCostPreview />
       <SeatingConfiguration />
