@@ -2,6 +2,7 @@ import {
   CheckCircle2,
   Gauge,
   HeartPulse,
+  Info,
   Lightbulb,
   Wallet,
 } from "lucide-react";
@@ -40,6 +41,23 @@ const levelClass: Record<ConfidenceLevel, string> = {
   Low:
     "bg-red-500/10 text-red-600 dark:text-red-400",
 };
+
+function InfoTip({ text }: { text: string }) {
+  return (
+    <span className="group relative inline-flex items-center">
+      <Info
+        size={13}
+        className="cursor-help text-muted-foreground/70"
+      />
+      <span
+        className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-1.5 w-56 -translate-x-1/2 rounded-lg bg-foreground px-3 py-2 text-xs font-normal leading-snug text-background opacity-0 shadow-md transition-opacity duration-150 group-hover:opacity-100"
+        role="tooltip"
+      >
+        {text}
+      </span>
+    </span>
+  );
+}
 
 function SelectionRow({
   label,
@@ -193,12 +211,14 @@ export default function PlanCard({
         <div className="flex items-center justify-between text-sm">
           <span className="flex items-center gap-1.5 text-muted-foreground">
             <HeartPulse size={14} /> Health Score
+            <InfoTip text="Seberapa baik hasil simulasi untuk skenario tersebut." />
           </span>
           <strong>{plan.result.health.score} / 100</strong>
         </div>
         <div className="flex items-center justify-between text-sm">
           <span className="flex items-center gap-1.5 text-muted-foreground">
             <Gauge size={14} /> Confidence Score
+            <InfoTip text="Seberapa yakin engine bahwa plan tersebut memenuhi seluruh constraint dan prioritas yang ditetapkan (budget, threshold, priority, fallback)." />
           </span>
           <strong>
             {plan.confidence.score} / 100
