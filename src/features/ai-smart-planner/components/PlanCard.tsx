@@ -1,5 +1,6 @@
 import {
   CheckCircle2,
+  Gauge,
   HeartPulse,
   Lightbulb,
   Wallet,
@@ -191,9 +192,20 @@ export default function PlanCard({
         </div>
         <div className="flex items-center justify-between text-sm">
           <span className="flex items-center gap-1.5 text-muted-foreground">
-            <HeartPulse size={14} /> Score
-          </span> 
+            <HeartPulse size={14} /> Health Score
+          </span>
           <strong>{plan.result.health.score} / 100</strong>
+        </div>
+        <div className="flex items-center justify-between text-sm">
+          <span className="flex items-center gap-1.5 text-muted-foreground">
+            <Gauge size={14} /> Confidence Score
+          </span>
+          <strong>
+            {plan.confidence.score} / 100
+            <span className="ml-1 font-normal text-muted-foreground">
+              ({plan.confidence.level})
+            </span>
+          </strong>
         </div>
       </div>
 
