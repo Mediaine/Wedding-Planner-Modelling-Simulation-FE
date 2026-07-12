@@ -15,6 +15,8 @@ interface BuilderStore {
 
   autoPlan: () => void;
 
+  loadScenario: (scenario: WeddingScenario) => void;
+
   updateBasic: (data: Partial<WeddingScenario["basic"]>) => void;
 
   updateGuest: (data: Partial<WeddingScenario["guest"]>) => void;
@@ -86,6 +88,12 @@ export const useBuilderStore = create<BuilderStore>((set) => ({
   goToStep: (step) =>
     set({
       currentStep: step,
+    }),
+
+  loadScenario: (scenario) =>
+    set({
+      scenario,
+      currentStep: 1,
     }),
 
   updateBasic: (data) =>

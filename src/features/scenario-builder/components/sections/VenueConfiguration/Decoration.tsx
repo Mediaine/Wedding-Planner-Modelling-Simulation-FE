@@ -4,39 +4,7 @@ import AppCard from "@/components/common/AppCard";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useBuilderStore } from "@/stores/builder.store";
-import type { DecorationPackage } from "@/types/venue";
-
-const decorationPackages: {
-  value: Exclude<DecorationPackage, "Custom" | "">;
-  title: string;
-  description: string;
-  cost: number;
-}[] = [
-  {
-    value: "Simple",
-    title: "Simple Decoration",
-    description: "Minimalist essentials",
-    cost: 7500000,
-  },
-  {
-    value: "Classic",
-    title: "Classic Decoration",
-    description: "Elegant standard setup",
-    cost: 15000000,
-  },
-  {
-    value: "Luxury",
-    title: "Luxury Decoration",
-    description: "Premium floral & stage",
-    cost: 30000000,
-  },
-  {
-    value: "Royal",
-    title: "Royal Decoration",
-    description: "Grand signature design",
-    cost: 50000000,
-  },
-];
+import { decorationCatalog as decorationPackages } from "@/data/decoration-catalog";
 
 export default function Decoration() {
   const { scenario, updateVenue } = useBuilderStore();

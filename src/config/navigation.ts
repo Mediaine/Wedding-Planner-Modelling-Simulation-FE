@@ -5,6 +5,7 @@ import {
   Scale,
   Store,
   Sparkles,
+  Wand2,
   Settings,
 } from "lucide-react";
 
@@ -24,6 +25,11 @@ export const navigation: NavigationItem[] = [
     title: "Scenario Builder",
     href: "/scenario-builder",
     icon: HeartHandshake,
+  },
+  {
+    title: "AI Smart Planner",
+    href: "/ai-smart-planner",
+    icon: Wand2,
   },
   {
     title: "Scenario Result",

@@ -4,6 +4,7 @@ import MainLayout from "@/layouts/MainLayout";
 
 import DashboardPage from "@/features/dashboard/DashboardPage";
 import ScenarioBuilderPage from "@/features/scenario-builder/ScenarioBuilderPage";
+import AISmartPlannerPage from "@/features/ai-smart-planner/AISmartPlannerPage";
 import ScenarioResultPage from "@/features/scenario-result/ScenarioResultPage";
 import ScenarioComparisonPage from "@/features/scenario-comparison/ScenarioComparisonPage";
 import VendorsPage from "@/features/vendors/VendorsPage";
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
       {
         path: "scenario-builder",
         element: <ScenarioBuilderPage />,
+      },
+      {
+        path: "ai-smart-planner",
+        element: <AISmartPlannerPage />,
       },
       {
         path: "scenario-result",

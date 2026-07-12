@@ -6,50 +6,27 @@ import {
   Sparkles,
   Trees,
   Warehouse,
+  type LucideIcon,
 } from "lucide-react";
 
 import AppCard from "@/components/common/AppCard";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useBuilderStore } from "@/stores/builder.store";
+import { venueCatalog } from "@/data/venue-catalog";
 
-const venueTypes = [
-  {
-    value: "Building",
-    title: "Building",
-    description: "Convention Hall",
-    cost: 25000000,
-    icon: Building2,
-  },
-  {
-    value: "Hotel",
-    title: "Hotel Ballroom",
-    description: "Premium Ballroom",
-    cost: 45000000,
-    icon: Hotel,
-  },
-  {
-    value: "Garden",
-    title: "Garden",
-    description: "Outdoor Garden",
-    cost: 30000000,
-    icon: Trees,
-  },
-  {
-    value: "Home",
-    title: "Private Home",
-    description: "Family Residence",
-    cost: 5000000,
-    icon: House,
-  },
-  {
-    value: "Outdoor",
-    title: "Outdoor",
-    description: "Open Area",
-    cost: 20000000,
-    icon: Warehouse,
-  },
-] as const;
+const venueIcons: Record<string, LucideIcon> = {
+  Building: Building2,
+  Hotel: Hotel,
+  Garden: Trees,
+  Home: House,
+  Outdoor: Warehouse,
+};
+
+const venueTypes = venueCatalog.map((item) => ({
+  ...item,
+  icon: venueIcons[item.value],
+}));
 
 export default function VenueType() {
   const { scenario, updateVenue } = useBuilderStore();

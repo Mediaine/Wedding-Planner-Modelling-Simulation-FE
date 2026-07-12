@@ -17,7 +17,6 @@ function money(value: number) {
 export default function WeddingCostBreakdown({
     food,
     venue,
-    decoration,
     vendor,
     tradition,
 }: Props) {

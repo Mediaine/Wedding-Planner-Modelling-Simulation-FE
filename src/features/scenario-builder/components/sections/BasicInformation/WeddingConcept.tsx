@@ -13,9 +13,9 @@ const concepts = [
 
     value: "DIY",
 
-    title: "DIY",
+    title: "DIY" ,
 
-    description: "Find and manage vendors yourself.",
+    description: "(Do It Yourself) Find and manage vendors yourself.",
 
   },
 

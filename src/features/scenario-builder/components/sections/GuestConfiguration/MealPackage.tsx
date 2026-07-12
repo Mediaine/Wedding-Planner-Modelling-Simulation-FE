@@ -4,39 +4,7 @@ import AppCard from "@/components/common/AppCard";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useBuilderStore } from "@/stores/builder.store";
-import type { MealPackage as MealPackageType } from "@/types/scenario";
-
-const mealPackages: {
-  value: Exclude<MealPackageType, "Custom" | "">;
-  title: string;
-  description: string;
-  price: number;
-}[] = [
-  {
-    value: "Economy",
-    title: "Economy",
-    description: "Basic catering menu",
-    price: 35000,
-  },
-  {
-    value: "Standard",
-    title: "Standard",
-    description: "Balanced catering menu",
-    price: 45000,
-  },
-  {
-    value: "Premium",
-    title: "Premium",
-    description: "Premium catering menu",
-    price: 60000,
-  },
-  {
-    value: "Luxury",
-    title: "Luxury",
-    description: "Luxury catering menu",
-    price: 85000,
-  },
-];
+import { mealCatalog as mealPackages } from "@/data/meal-catalog";
 
 export default function MealPackage() {
   const { scenario, updateGuest } = useBuilderStore();

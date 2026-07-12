@@ -58,3 +58,30 @@ export { AutoPlannerEngine } from "./planner/AutoPlannerEngine";
  * ======================================
  */
 export { TraditionEngine } from "./tradition/TraditionEngine";
+
+/**
+ * ======================================
+ * Timeline
+ * ======================================
+ */
+export { TimelineEngine } from "./timeline/TimelineEngine";
+export { TimelineBuilder } from "./timeline/TimelineBuilder";
+export { TimelineFactory } from "./timeline/TimelineFactory";
+export { TimelineUtils } from "./timeline/TimelineUtils";
+
+/**
+ * ======================================
+ * AI Smart Planner
+ * ======================================
+ */
+export { RequirementAnalyzer } from "./planner-ai/RequirementAnalyzer";
+export { BudgetGradeEngine } from "./planner-ai/BudgetGradeEngine";
+export { StyleModifierEngine } from "./planner-ai/StyleModifierEngine";
+export { PriorityMatrixEngine } from "./planner-ai/PriorityMatrixEngine";
+export { ThresholdAllocationEngine } from "./planner-ai/ThresholdAllocationEngine";
+export { FallbackStrategyEngine } from "./planner-ai/FallbackStrategyEngine";
+export { PackageSelectionEngine } from "./planner-ai/PackageSelectionEngine";
+export { ScenarioGenerator } from "./planner-ai/ScenarioGenerator";
+export { ConfidenceScoreEngine } from "./planner-ai/ConfidenceScoreEngine";
+export { SmartPlannerPipeline } from "./planner-ai/SmartPlannerPipeline";
+export { PlanGeneratorEngine } from "./planner-ai/PlanGeneratorEngine";

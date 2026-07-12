@@ -18,6 +18,23 @@ export default function VendorConfiguration() {
                 category="Drink & Beverage"
             />
 
+            <VendorCategory
+                category="Entertainment"
+            />
+
+            <VendorCategory
+                category="Beauty"
+            />
+
+            <VendorCategory
+                category="Master of Ceremony"
+            />
+
+            <VendorCategory
+                category="Wedding Organizer"
+            />
+
+
         </div>
 
     );
